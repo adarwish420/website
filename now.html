@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Now — Amjad Darwish</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg: #ffffff;
+            --surface: #f8f8f7;
+            --border: #e8e8e5;
+            --text: #1a1a18;
+            --muted: #6b6b63;
+            --accent: #2563eb;
+            --accent-light: #eff4ff;
+            --radius: 10px;
+            --max-w: 680px;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--text);
+            background: var(--bg);
+        }
+
+        /* ── Nav ── */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-logo {
+            font-weight: 600;
+            font-size: 15px;
+            letter-spacing: -0.02em;
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active { color: var(--text); }
+
+        .theme-toggle {
+            background: none;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 6px 9px;
+            cursor: pointer;
+            color: var(--muted);
+            font-size: 15px;
+            line-height: 1;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+        }
+
+        .theme-toggle:hover {
+            color: var(--text);
+            border-color: var(--muted);
+        }
+
+        /* ── Layout ── */
+        .page {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 140px 24px 80px;
+        }
+
+        /* ── Header ── */
+        .now-header {
+            margin-bottom: 56px;
+        }
+
+        .section-label {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 16px;
+        }
+
+        .now-header h1 {
+            font-size: clamp(1.75rem, 4vw, 2.25rem);
+            font-weight: 600;
+            letter-spacing: -0.04em;
+            line-height: 1.2;
+            margin-bottom: 12px;
+        }
+
+        .now-header .updated {
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        /* ── Now blocks ── */
+        .now-block {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .now-block:last-child {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .now-block h2 {
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+
+        .now-block p {
+            color: var(--muted);
+            margin-bottom: 12px;
+        }
+
+        .now-block p:last-child { margin-bottom: 0; }
+
+        /* ── Item list (books, podcasts) ── */
+        .now-items {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .now-item {
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+        }
+
+        .now-item-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 16px;
+        }
+
+        .now-item-body {
+            padding-top: 2px;
+        }
+
+        .now-item-title {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text);
+            line-height: 1.4;
+        }
+
+        .now-item-sub {
+            font-size: 13px;
+            color: var(--muted);
+            margin-top: 2px;
+        }
+
+        /* ── Footer ── */
+        .divider {
+            border: none;
+            border-top: 1px solid var(--border);
+            max-width: var(--max-w);
+            margin: 0 auto;
+        }
+
+        footer {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 24px 24px 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: var(--muted);
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        /* ── Dark mode ── */
+        [data-theme="dark"] {
+            --bg: #0f0f0e;
+            --surface: #1a1a18;
+            --border: #2c2c29;
+            --text: #f0f0ec;
+            --muted: #8a8a80;
+        }
+
+        [data-theme="dark"] nav {
+            background: rgba(15, 15, 14, 0.85);
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 600px) {
+            nav { padding: 16px 20px; }
+            .nav-links { gap: 20px; }
+            .page { padding: 120px 20px 60px; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="index.html" class="nav-logo">Amjad Darwish</a>
+        <ul class="nav-links">
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#tools">Tools</a></li>
+            <li><a href="index.html#work">Work</a></li>
+            <li><a href="now.html" class="active">Now</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">☀︎</button>
+    </nav>
+
+    <div class="page">
+
+        <div class="now-header">
+            <p class="section-label">Now</p>
+            <h1>What I'm up to<br>right now.</h1>
+            <p class="updated">Last updated March 2026 · Inspired by <a href="https://nownownow.com/about" target="_blank" rel="noopener" style="color:inherit;text-underline-offset:3px;">Derek Sivers</a></p>
+        </div>
+
+        <!-- Work -->
+        <div class="now-block">
+            <h2>Work</h2>
+            <p>
+                Currently focused on building server-side measurement infrastructure
+                for clients — moving tracking off the browser and into Google Cloud
+                to improve data quality and privacy compliance.
+            </p>
+            <p>
+                Also experimenting with marketing agents that automate repetitive
+                reporting workflows using Cloud Functions and the Gemini API.
+            </p>
+        </div>
+
+        <!-- Personal -->
+        <div class="now-block">
+            <h2>Personal</h2>
+            <p>
+                Working on my long-term financial independence plan — reading a lot,
+                thinking in systems, and being more intentional about where time goes.
+            </p>
+            <p>
+                Football season is always on in the background. Loud opinions, zero apologies.
+            </p>
+        </div>
+
+        <!-- Book -->
+        <div class="now-block">
+            <h2>Book</h2>
+            <div class="now-items">
+                <div class="now-item">
+                    <div class="now-item-icon">📖</div>
+                    <div class="now-item-body">
+                        <div class="now-item-title">The Psychology of Money</div>
+                        <div class="now-item-sub">Morgan Housel — on wealth, greed, and happiness</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Podcasts -->
+        <div class="now-block">
+            <h2>Podcasts</h2>
+            <div class="now-items">
+                <div class="now-item">
+                    <div class="now-item-icon">🎙</div>
+                    <div class="now-item-body">
+                        <div class="now-item-title">Acquired</div>
+                        <div class="now-item-sub">Deep dives into the world's greatest companies</div>
+                    </div>
+                </div>
+                <div class="now-item">
+                    <div class="now-item-icon">🎙</div>
+                    <div class="now-item-body">
+                        <div class="now-item-title">Huberman Lab</div>
+                        <div class="now-item-sub">Science-based tools for everyday life</div>
+                    </div>
+                </div>
+                <div class="now-item">
+                    <div class="now-item-icon">🎙</div>
+                    <div class="now-item-body">
+                        <div class="now-item-title">Marketing Against the Grain</div>
+                        <div class="now-item-sub">Kipp Bodnar & Kieran Flanagan on modern marketing</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <hr class="divider">
+
+    <footer>
+        <span>© 2026 Amjad Darwish</span>
+        <a href="index.html" style="color:inherit;text-underline-offset:3px;">← Back home</a>
+    </footer>
+
+    <script>
+        const toggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+
+        if (localStorage.getItem('theme') === 'dark') {
+            html.setAttribute('data-theme', 'dark');
+            toggle.textContent = '◑';
+        }
+
+        toggle.addEventListener('click', () => {
+            const isDark = html.getAttribute('data-theme') === 'dark';
+            if (isDark) {
+                html.removeAttribute('data-theme');
+                toggle.textContent = '☀︎';
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                toggle.textContent = '◑';
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+    </script>
+</body>
+
+</html>
