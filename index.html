@@ -225,20 +225,19 @@
 
         /* ── Tools marquee ── */
         .tools-section {
-            max-width: 100%;
+            max-width: var(--max-w);
             margin: 0 auto;
-            padding: 80px 0 60px;
-            overflow: hidden;
+            padding: 80px 24px 60px;
         }
 
         .tools-section .section-label {
-            max-width: var(--max-w);
-            margin: 0 auto 32px;
-            padding: 0 24px;
+            margin: 0 0 32px;
+            padding: 0;
         }
 
         .marquee-wrap {
             position: relative;
+            overflow: hidden;
         }
 
         .marquee-wrap::before,
