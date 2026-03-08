@@ -223,6 +223,87 @@
             color: var(--text);
         }
 
+        /* ── Tools marquee ── */
+        .tools-section {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 80px 0 60px;
+            overflow: hidden;
+        }
+
+        .tools-section .section-label {
+            max-width: var(--max-w);
+            margin: 0 auto 32px;
+            padding: 0 24px;
+        }
+
+        .marquee-wrap {
+            position: relative;
+        }
+
+        .marquee-wrap::before,
+        .marquee-wrap::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 80px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .marquee-wrap::before {
+            left: 0;
+            background: linear-gradient(to right, var(--bg), transparent);
+        }
+
+        .marquee-wrap::after {
+            right: 0;
+            background: linear-gradient(to left, var(--bg), transparent);
+        }
+
+        .marquee-track {
+            display: flex;
+            gap: 20px;
+            width: max-content;
+            animation: marquee 30s linear infinite;
+        }
+
+        .marquee-track:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes marquee {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .tool-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            border-radius: 100px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text);
+            white-space: nowrap;
+            flex-shrink: 0;
+            transition: border-color 0.2s;
+        }
+
+        .tool-chip:hover {
+            border-color: var(--muted);
+        }
+
+        .tool-chip svg {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+
         /* ── Contact ── */
         .contact-card {
             background: var(--surface);
@@ -403,6 +484,7 @@
         <a href="#" class="nav-logo">Amjad Darwish</a>
         <ul class="nav-links">
             <li><a href="#about">About</a></li>
+            <li><a href="#tools">Tools</a></li>
             <li><a href="#work">Work</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
@@ -454,6 +536,75 @@
             <span class="skill-tag">Marketing Measurement</span>
         </div>
     </section>
+
+    <hr class="divider">
+
+    <!-- Tools & Stack -->
+    <div class="tools-section" id="tools">
+        <p class="section-label">Tools &amp; Stack</p>
+        <div class="marquee-wrap">
+            <div class="marquee-track">
+                <!-- Set 1 -->
+                <span class="tool-chip">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M22 12c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2s10 4.477 10 10z" stroke="currentColor" stroke-width="1.5"/><path d="M12 2v10l7 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="12" r="3" fill="currentColor" opacity=".3"/></svg>
+                    GA4
+                </span>
+                <span class="tool-chip">
+                    <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 13h3v4H7zM11 10h3v7h-3zM15 7h3v10h-3z" fill="currentColor" opacity=".5"/></svg>
+                    Looker Studio
+                </span>
+                <span class="tool-chip">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M20 17.722c1.162-.588 2-1.806 2-3.222 0-1.96-1.37-3.591-3.195-3.925A7.001 7.001 0 0 0 5.8 9.4 4.5 4.5 0 0 0 6.5 18H19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 14l-2-2-2 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 12v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    Cloud Run
+                </span>
+                <span class="tool-chip">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    Cloud Functions
+                </span>
+                <span class="tool-chip">
+                    <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="3" width="20" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M2 8h20" stroke="currentColor" stroke-width="1.5"/><circle cx="5" cy="5.5" r=".75" fill="currentColor"/><circle cx="7.5" cy="5.5" r=".75" fill="currentColor"/><circle cx="10" cy="5.5" r=".75" fill="currentColor"/><path d="M12 12l-3 3h6l-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    Server-Side GTM
+                </span>
+                <span class="tool-chip">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M20 15l-3 3 3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    Supermetrics
+                </span>
+                <span class="tool-chip">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M3 3h18v18H3z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M12 8v4l3 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 17s1.5-3 5-3 5 3 5 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    JavaScript
+                </span>
+                <!-- Set 2 (duplicate for seamless loop) -->
+                <span class="tool-chip">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M22 12c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2s10 4.477 10 10z" stroke="currentColor" stroke-width="1.5"/><path d="M12 2v10l7 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="12" r="3" fill="currentColor" opacity=".3"/></svg>
+                    GA4
+                </span>
+                <span class="tool-chip">
+                    <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 13h3v4H7zM11 10h3v7h-3zM15 7h3v10h-3z" fill="currentColor" opacity=".5"/></svg>
+                    Looker Studio
+                </span>
+                <span class="tool-chip">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M20 17.722c1.162-.588 2-1.806 2-3.222 0-1.96-1.37-3.591-3.195-3.925A7.001 7.001 0 0 0 5.8 9.4 4.5 4.5 0 0 0 6.5 18H19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 14l-2-2-2 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 12v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    Cloud Run
+                </span>
+                <span class="tool-chip">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    Cloud Functions
+                </span>
+                <span class="tool-chip">
+                    <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="3" width="20" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M2 8h20" stroke="currentColor" stroke-width="1.5"/><circle cx="5" cy="5.5" r=".75" fill="currentColor"/><circle cx="7.5" cy="5.5" r=".75" fill="currentColor"/><circle cx="10" cy="5.5" r=".75" fill="currentColor"/><path d="M12 12l-3 3h6l-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    Server-Side GTM
+                </span>
+                <span class="tool-chip">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M20 15l-3 3 3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    Supermetrics
+                </span>
+                <span class="tool-chip">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M3 3h18v18H3z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M12 8v4l3 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 17s1.5-3 5-3 5 3 5 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    JavaScript
+                </span>
+            </div>
+        </div>
+    </div>
 
     <hr class="divider">
 
