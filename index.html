@@ -126,7 +126,10 @@
             letter-spacing: -0.04em;
             line-height: 1.15;
             margin-bottom: 20px;
-            color: var(--text);
+            background: linear-gradient(135deg, var(--text) 0%, #2563eb 60%, #7c3aed 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .hero-tagline {
@@ -309,6 +312,7 @@
             border: 1px solid var(--border);
             border-radius: 14px;
             padding: 36px 40px;
+            box-shadow: 0 8px 32px rgba(37, 99, 235, 0.08), 0 2px 8px rgba(0, 0, 0, 0.06);
         }
 
         .contact-card h2 {
@@ -456,6 +460,55 @@
             transition: transform 0.2s;
         }
 
+        /* ── Scroll indicator ── */
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(to right, #2563eb, #7c3aed);
+            z-index: 200;
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        /* ── Scroll to top button ── */
+        .scroll-top {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--text);
+            color: var(--bg);
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s, transform 0.2s;
+            z-index: 150;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-2px);
+        }
+
+        /* ── Colored section labels ── */
+        .section-label.label-about  { color: #2563eb; }
+        .section-label.label-tools  { color: #7c3aed; }
+        .section-label.label-work   { color: #059669; }
+        .section-label.label-contact { color: #d97706; }
+
         /* ── Responsive ── */
         @media (max-width: 600px) {
             nav {
@@ -482,6 +535,9 @@
 </head>
 
 <body>
+
+    <div class="scroll-indicator" id="scrollIndicator"></div>
+    <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">↑</button>
 
     <nav>
         <a href="#" class="nav-logo">Amjad Darwish</a>
@@ -519,7 +575,7 @@
 
     <!-- About -->
     <section id="about">
-        <p class="section-label">About</p>
+        <p class="section-label label-about">About</p>
         <h2>A bit about me</h2>
         <p class="about-body">
             I'm a MarTech & Measurement Specialist with +15 years of experience desiging and building things
@@ -545,7 +601,7 @@
 
     <!-- Tools & Stack -->
     <div class="tools-section" id="tools">
-        <p class="section-label">Tools &amp; Stack</p>
+        <p class="section-label label-tools">Tools &amp; Stack</p>
         <div class="marquee-wrap">
             <div class="marquee-track">
                 <!-- Set 1 -->
@@ -614,7 +670,7 @@
 
     <!-- Work -->
     <section id="work">
-        <p class="section-label">Work</p>
+        <p class="section-label label-work">Work</p>
         <h2>Selected projects</h2>
 
         <div class="work-list">
@@ -665,7 +721,7 @@
 
     <!-- Contact -->
     <section id="contact">
-        <p class="section-label">Contact</p>
+        <p class="section-label label-contact">Contact</p>
         <div class="contact-card">
             <h2>Let's work together</h2>
             <p>Open to freelance projects, full-time roles, and interesting conversations.</p>
@@ -685,6 +741,21 @@
     </footer>
 
     <script>
+        // Scroll indicator + scroll-to-top
+        const indicator = document.getElementById('scrollIndicator');
+        const scrollTopBtn = document.getElementById('scrollTop');
+
+        window.addEventListener('scroll', () => {
+            const scrolled = window.scrollY;
+            const total = document.documentElement.scrollHeight - window.innerHeight;
+            indicator.style.width = (scrolled / total * 100) + '%';
+            scrollTopBtn.classList.toggle('visible', scrolled > 400);
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
         const toggle = document.getElementById('themeToggle');
         const html = document.documentElement;
 
