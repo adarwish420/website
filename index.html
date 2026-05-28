@@ -126,7 +126,7 @@
             letter-spacing: -0.04em;
             line-height: 1.15;
             margin-bottom: 20px;
-            background: linear-gradient(135deg, var(--text) 0%, #2563eb 60%, #7c3aed 100%);
+            background: linear-gradient(135deg, #1a1a18 0%, #4a4a46 50%, #8a8a80 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -312,7 +312,8 @@
             border: 1px solid var(--border);
             border-radius: 14px;
             padding: 36px 40px;
-            box-shadow: 0 8px 32px rgba(37, 99, 235, 0.08), 0 2px 8px rgba(0, 0, 0, 0.06);
+            background: #f8f8f7b3;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(0, 0, 0, 0.04);
         }
 
         .contact-card h2 {
@@ -466,7 +467,7 @@
             top: 0;
             left: 0;
             height: 3px;
-            background: linear-gradient(to right, #2563eb, #7c3aed);
+            background: linear-gradient(to right, #22c55e, #16a34a);
             z-index: 200;
             width: 0%;
             transition: width 0.1s linear;
@@ -504,10 +505,10 @@
         }
 
         /* ── Colored section labels ── */
-        .section-label.label-about  { color: #2563eb; }
-        .section-label.label-tools  { color: #7c3aed; }
-        .section-label.label-work   { color: #059669; }
-        .section-label.label-contact { color: #d97706; }
+        .section-label.label-about,
+        .section-label.label-tools,
+        .section-label.label-work,
+        .section-label.label-contact { color: #16a34a; }
 
         /* ── Responsive ── */
         @media (max-width: 600px) {
