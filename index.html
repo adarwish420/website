@@ -29,7 +29,6 @@
 
         html {
             scroll-behavior: smooth;
-            transition: background 0.4s ease, color 0.4s ease;
         }
 
         body {
@@ -38,6 +37,16 @@
             line-height: 1.7;
             color: var(--text);
             background: var(--bg);
+            transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out;
+        }
+
+        nav,
+        .contact-card,
+        .skill-tag,
+        .work-tag,
+        .availability,
+        .divider {
+            transition: background-color 0.4s ease-in-out, border-color 0.4s ease-in-out, color 0.4s ease-in-out;
         }
 
         /* ── Nav ── */
