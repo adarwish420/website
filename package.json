@@ -1,0 +1,12 @@
+{
+  "name": "website-tooling",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Dev tooling for the portfolio site (screenshot rendering).",
+  "scripts": {
+    "shot": "node shot.js"
+  },
+  "dependencies": {
+    "puppeteer-core": "^23.0.0"
+  }
+}
