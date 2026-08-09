@@ -1,15 +1,16 @@
 {
-  "hosting": {
-    "site": "adarwish-web",
-    "public": ".",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**",
-      "package.json",
-      "package-lock.json",
-      "shot.js",
-      "shot-*.png"
-    ]
-  }
+  "hosting": [
+    {
+      "site": "adarwish-web",
+      "public": ".",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**", "package.json", "package-lock.json", "shot.js", "shot-*.png", "tagging-empty/**"]
+    },
+    {
+      "site": "gtm-ttnv8qjx-nwe5z",
+      "public": "tagging-empty",
+      "rewrites": [
+        { "source": "**", "run": { "serviceId": "server-side-tagging", "region": "us-central1" } }
+      ]
+    }
+  ]
 }
