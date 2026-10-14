@@ -24,21 +24,22 @@ To redeploy without a code change, go to **Actions → Deploy to Cloud Storage �
 ```
  Visitor's browser
    │
-   ├── adarwish.xyz (pages, icons) ──────▶ [load balancer*] ──▶ bucket adarwish-site
+   ├── adarwish.xyz (pages, icons) ──────▶ [load balancer] ──▶ bucket adarwish-site
    │
-   └── measure.adarwish.xyz (GTM, hits) ─▶ [load balancer*] ──▶ Cloud Run: server-side GTM
+   └── measure.adarwish.xyz (GTM, hits) ─▶ [load balancer] ──▶ Cloud Run: server-side GTM
                                                                    │
                                                                    ▼
                                                               GA4 and other platforms
 ```
 
-\* **Not yet confirmed:** the site's exact domain (assumed to be `adarwish.xyz`) and what sits in front of the bucket. Confirmed: the domain is served from the bucket, and server-side GTM runs on Cloud Run (moved off Firebase Hosting on Aug 10, 2026). A shared Cloud Load Balancer in front of both is the likely setup. It keeps the site and the tagging server on the same IP range, so Safari doesn't cap server-set cookies at 7 days. Check **Network services → Load balancing** in the Google Cloud console and update this note.
+The site is served at `adarwish.xyz` from the `adarwish-site` bucket, behind a Google Cloud load balancer. Server-side GTM runs on Cloud Run at `measure.adarwish.xyz` (moved off Firebase Hosting on Aug 10, 2026). Serving both through Google Cloud load balancing keeps the site and the tagging server on the same IP range, so Safari doesn't cap cookies set by the tagging server at 7 days.
 
 | Piece | Where |
 | --- | --- |
+| Domain | `adarwish.xyz` (site), `measure.adarwish.xyz` (server-side GTM) |
 | Source | `adarwish420/website`, branch `main` |
 | Google Cloud project | `gtm-ttnv8qjx-nwe5z` |
-| Website files | Cloud Storage bucket `adarwish-site` |
+| Website files | Cloud Storage bucket `adarwish-site`, behind a Google Cloud load balancer |
 | Deploy credentials | GitHub secret `GCS_SERVICE_ACCOUNT`: JSON key for a service account with **Storage Object Admin** on the bucket only |
 | Tracking | GTM container `GTM-NC7P8JG`, loaded from `measure.adarwish.xyz` |
 
