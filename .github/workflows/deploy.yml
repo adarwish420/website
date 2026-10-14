@@ -1,0 +1,33 @@
+name: Deploy to Cloud Storage
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCS_SERVICE_ACCOUNT }}
+
+      - name: Set up gcloud
+        uses: google-github-actions/setup-gcloud@v2
+
+      # Upload only the site files. Other objects in the bucket are left alone.
+      - name: Upload pages
+        run: >
+          gcloud storage cp index.html now.html gs://adarwish-site/
+          --cache-control="public, max-age=300"
+
+      - name: Upload icons
+        run: >
+          gcloud storage cp favicon.ico favicon.png apple-touch-icon.png gs://adarwish-site/
+          --cache-control="public, max-age=86400"
